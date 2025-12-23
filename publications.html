@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Haruhisa Oda Publications</title>
+        <style>
+            body {
+              margin: 0;
+              font-family:Arial, Helvetica, sans-serif;
+              padding-left: 6vw;      /* 左余白 */
+              padding-right: 6vw;     /* 右余白 */
+            }
+          
+            .hero {
+              position: relative;
+              height: 100vh;
+
+              /* 背景画像 */
+              background-image: url("./img/IMG_0466.jpg"); /* ← 実際の画像パス */
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+
+              /* body padding 打ち消し（必要なら） */
+              margin-left: -6vw;
+              margin-right: -6vw;
+              width: calc(100% + 12vw);
+              overflow: hidden;
+            }
+
+            /* 暗くするオーバーレイ */
+            .hero-overlay {
+              position: absolute;
+              inset: 0;
+              background: rgba(0, 0, 0, 0.1);
+              z-index: 0;
+            }
+            /* 文字の「枠」＝画像と同じ大きさ */
+            .hero-content {
+              position: relative;
+              z-index: 1;
+
+              height: 100%;                  /* ← hero と完全一致 */
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+
+              padding: 15vh 6vw;
+              color: white;
+              text-align: center;
+              box-sizing: border-box;
+            }
+            
+
+            /* 文字 */
+            .hero-text {
+              position: relative;
+              z-index: 1;
+
+              height: 100%;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+
+              padding: 5vh 6vw;
+
+              color: white;
+              text-align: center;
+            }
+
+            .hero h1,
+            .hero h2 {
+              font-family: sans-serif;
+            }
+          
+            .hero-text p {
+              margin-top: 1rem;
+              font-size: clamp(1rem, 3vw, 1.5rem);
+            }
+            .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 90vw;
+            margin: 0 auto;
+            }
+            .info-grid2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 90vw;
+            margin: 0 auto;
+            }
+
+            .info-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, #00bfff, #7b00ff);
+            border-radius: 10px;
+
+            font-family: sans-serif;
+            font-size: clamp(0.85rem, 3.5vw, 1.1rem);
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+            }
+            .research-background {
+              background: #f9fafc;
+              border-radius: 12px;
+              padding: 2rem;
+              margin: 2rem auto;
+              max-width: 1100px;
+              font-family: sans-serif;
+            }
+            .research-background h2 {
+              font-size: 1.8rem;
+              margin-bottom: 1.5rem;
+              text-align: center;
+              color: darkblue;
+            }
+            .background-content {
+              display: grid;
+              gap: 1.2rem;
+              grid-template-columns: 1fr;
+            }
+            .paragraph-card {
+              background: #ffffff;
+              border-left: 4px solid darkblue; /* ✅ 左にハイライトライン */
+              border-radius: 10px;
+              box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+              padding: 1.2rem 1.5rem;
+              transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .paragraph-card:hover {
+              transform: translateY(-3px);
+              box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            }
+
+            .paragraph-card h3 {
+              font-size: 1.3rem;
+              color: darkblue;
+              margin-top: 0;
+              margin-bottom: 0.5rem;
+            }
+
+            .paragraph-card p {
+              font-size: 1rem;
+              line-height: 1.7;
+              color: #333;
+              margin: 0;
+            }
+            /* カードの基本スタイル */
+            .research-card {
+              background: #ffffff;
+              border-radius: 12px;
+              box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+              padding: 1.5rem;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            /* タイトル */
+            .research-card h3 {
+              font-size: 1.3rem;
+              margin-bottom: 1rem;
+              color: darkblue;
+            }
+
+            /* 内容 */
+            .research-card p {
+              font-size: 1rem;
+              color: #555;
+              flex-grow: 1;
+            }
+
+            /* Read Moreボタン */
+            .research-card a {
+              margin-top: 1rem;
+              text-decoration: none;
+              color: #ffffff;
+              background-color: darkblue;
+              padding: 0.5rem 1rem;
+              border-radius: 6px;
+              text-align: center;
+              display: inline-block;
+              transition: background-color 0.3s ease;
+            }
+
+            /* Coming Soonボタン */
+            .research-card .coming-soon {
+              margin-top: 1rem;
+              padding: 0.5rem 1rem;
+              border-radius: 6px;
+              background-color: #888888;
+              color: #ffffff;
+              border: none;
+              cursor: not-allowed;
+              text-align: center;
+              display: inline-block;
+              font-family: 'Inter', sans-serif;
+            }
+
+            /* ホバー効果 */
+            .research-card:hover {
+              transform: translateY(-5px);
+              box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            }
+
+            .research-card a:hover {
+              background-color: #005fa3;
+            }
+
+        </style>
+    </head>
+    <body>
+        <h2 style="font-family: sans-serif; color: darkblue;font-weight: bold;">Publications</h2>
+        <p>Haruhisa Oda, Vanessa Robins, and Donato Vicendese. Seeing the Unseen: Quantifying 3D Airway Branching from Lung CT Scans. European Respiratory Journal 66(suppl 69) (2025) PA4163.<br>
+            生命のかたちを捉えるデータ解析--トポロジカルデータ解析. 医学のあゆみ 2024年7月<br>
+            Haruhisa Oda. Persistent homological 3D cell detection. JSIAM Letters 16 (2024) 25-28. https://doi.org/10.14495/jsiaml.16.25 <br>
+            Haruhisa Oda,  Kazuo Tonami, Yoichi Nakata, Naoko Takubo, and Hiroki Kurihara. Persistent homological cell tracking technology. Scientific Reports 13 (2023) 10882. https://doi.org/10.1038/s41598-023-37760-3  (Direct link to text: https://rdcu.be/df6rI)<br>
+            Haruhisa Oda. Counting and detecting figures using persistent homology. JSIAM Letters 15 (2023) 33-36. https://doi.org/10.14495/jsiaml.15.33<br> 
+        </p>
+        <h2 style="font-family: sans-serif; color: darkblue;font-weight: bold;">Preprints</h2>
+        <p>A novel measure of time series data pattern based on persistent homology that can detect the trend change of the daily all-cause mortality in Tokyo after the temperature rise. Preprint at In Review (Research Square).<br>
+            Novel definition and quantitative analysis of branch structure with topological data analysis. Preprint at arXiv2402.07436<br>
+        </p>
+        <h2 style="font-family: sans-serif; color: darkblue;font-weight: bold;">Presentations</h2>
+        <h3 style="font-family: sans-serif; color: darkblue;font-weight: bold;">Upcoming</h3>
+        <p>
+
+
+
+        </p>
+        <h3 style="font-family: sans-serif; color: darkblue;font-weight: bold;">Past</h3>
+        <p>Time series objecet detection with periodic boundary persistent homology. IEEE International Conference on Industrial Engineering and Engineering Management. Dec 2025.<br>
+            Topology and Biomedicine: The Future of Fusion Research.  第48回日本分子生物学会年会 ミニシンポジウム  Future of mathematical data science driven biomedical research. Dec 2025.<br>
+            臨床画像解析への数理的アプローチ. 第1回数理科学と生命科学の交流会. Oct 2025.<br>
+Seeing the Unseen: Quantifying 3D airway branching from lung CT scans. The ERS Congress 2025.<br>
+Computational Pathology with Topological Data Analysis. 第84回日本癌学会学術総会. Sep 2025.<br>
+Persistent homology tool for branch structure analysis. 日本応用数理学会年会. Sep 2025.<br>
+Topology enhances classical figure detection. 5th International Conference on Electrical, Computer and Energy Technologies (ICECET 2025). Jul 2025.<br>
+パーシステントホモロジー(PH)による図形検出の拡張. 日本応用数理学会研究部会連合発表会. Mar 2025.<br>
+TDA As Image Analysis Tool (TAIAT) Project: "Usable" TDA for bioresearch. 第47回日本分子生物学会年会. Nov 2024.<br>
+TDAに基づく胚細胞膜画像のセグメンテーションおよびトラッキング技術. 日本応用数理学会年会. Sep 2024.<br>
+周期境界パーシステントホモロジーと時系列データ物体検出. 日本応用数理学会年会. Sep 2024.<br>
+画像解析ツールとしてのTDA. 日本応用数理学会年会. Sep 2024.<br>
+2D & 3D segmentation of embryo membrane images using persistent homology. Seminar at ASHBi. May 2024.<br>
+Topology & Medicine. Seminar at ASHBi. April 2024.<br>
+TDAに基づく医学データ解析ツール開発. 日本応用数理学会第20回研究部会連合発表会 位相的データ解析研究部会. 2024年3月.<br>
+医学データのかたち:トポロジカルデータ解析. 東大リトリート 有馬聡記念フェローシップ受賞記念講演. 2024年2月.<br>
+医学データのかたち:トポロジカルデータ解析. 東大リトリート ポスター発表. 2024年2月.<br>
+A novel method for vessel analysis based on topological data analysis. 第31回日本血管生物医学会学術集会 YIAセッション. 2023年12月.<br>
+トポロジカルデータ解析：生命科学データ解析の新領域（Topological data Analysis: the new field of biological data analysis）. 第46回日本分子生物学会年会 ポスター発表. 2023年12月<br>
+トポロジカルデータ解析：生命科学データ解析の新領域（Topological data Analysis: the new field of biological data analysis）. 第46回日本分子生物学会年会 公募シンポジウム 「分子生物学のためのロボット生物学」. 2023年12月<br>
+Persistent homological cell tracking technology. Department Seminar. September 2023.<br>
+Persistent homological figure detection technology and the latest status of its applications. ICIAM 2023 Tokyo. August 2023.<br>
+Medical image analysis with persistence diagram and generalized persistence landscape. TDA week 2023. July 2023. TDA week 2023<br>
+パーシステントホモロジーによる図形検出技術の応用（顕微鏡画像を中心として）. 日本応用数理学会第19回研究部会連合発表会 位相的データ解析研究部会. 2023年3月.<br>
+パーシステントホモロジーによる図形の数え上げ. 日本応用数理学会 若手の会 第7回学生研究発表会. 2022年3月.<br>
+        </p>
+    </body>
+</html> 

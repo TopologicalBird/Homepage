@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Haruhisa Oda Homepage</title>
+        <style>
+            body {
+              margin: 0;
+              font-family:Arial, Helvetica, sans-serif;
+              padding-left: 6vw;      /* 左余白 */
+              padding-right: 6vw;     /* 右余白 */
+            }
+          
+            .hero {
+              position: relative;
+              height: 100vh;
+
+              /* 背景画像 */
+              background-image: url("./img/IMG_0466.jpg"); /* ← 実際の画像パス */
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+
+              /* body padding 打ち消し（必要なら） */
+              margin-left: -6vw;
+              margin-right: -6vw;
+              width: calc(100% + 12vw);
+              overflow: hidden;
+            }
+
+            /* 暗くするオーバーレイ */
+            .hero-overlay {
+              position: absolute;
+              inset: 0;
+              background: rgba(0, 0, 0, 0.1);
+              z-index: 0;
+            }
+            /* 文字の「枠」＝画像と同じ大きさ */
+            .hero-content {
+              position: relative;
+              z-index: 1;
+
+              height: 100%;                  /* ← hero と完全一致 */
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+
+              padding: 15vh 6vw;
+              color: white;
+              text-align: center;
+              box-sizing: border-box;
+            }
+            
+
+            /* 文字 */
+            .hero-text {
+              position: relative;
+              z-index: 1;
+
+              height: 100%;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+
+              padding: 5vh 6vw;
+
+              color: white;
+              text-align: center;
+            }
+
+            .hero h1,
+            .hero h2 {
+              font-family: sans-serif;
+            }
+          
+            .hero-text p {
+              margin-top: 1rem;
+              font-size: clamp(1rem, 3vw, 1.5rem);
+            }
+            .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 90vw;
+            margin: 0 auto;
+            }
+            .info-grid2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 90vw;
+            margin: 0 auto;
+            }
+
+            .info-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, #00bfff, #7b00ff);
+            border-radius: 10px;
+
+            font-family: sans-serif;
+            font-size: clamp(0.85rem, 3.5vw, 1.1rem);
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+            }
+            .research-background {
+              background: #f9fafc;
+              border-radius: 12px;
+              padding: 2rem;
+              margin: 2rem auto;
+              max-width: 1100px;
+              font-family: sans-serif;
+            }
+            .research-background h2 {
+              font-size: 1.8rem;
+              margin-bottom: 1.5rem;
+              text-align: center;
+              color: darkblue;
+            }
+            .background-content {
+              display: grid;
+              gap: 1.2rem;
+              grid-template-columns: 1fr;
+            }
+            .paragraph-card {
+              background: #ffffff;
+              border-left: 4px solid darkblue; /* ✅ 左にハイライトライン */
+              border-radius: 10px;
+              box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+              padding: 1.2rem 1.5rem;
+              transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .paragraph-card:hover {
+              transform: translateY(-3px);
+              box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            }
+
+            .paragraph-card h3 {
+              font-size: 1.3rem;
+              color: darkblue;
+              margin-top: 0;
+              margin-bottom: 0.5rem;
+            }
+
+            .paragraph-card p {
+              font-size: 1rem;
+              line-height: 1.7;
+              color: #333;
+              margin: 0;
+            }
+            /* カードの基本スタイル */
+            .research-card {
+              background: #ffffff;
+              border-radius: 12px;
+              box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+              padding: 1.5rem;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            /* タイトル */
+            .research-card h3 {
+              font-size: 1.3rem;
+              margin-bottom: 1rem;
+              color: darkblue;
+            }
+
+            /* 内容 */
+            .research-card p {
+              font-size: 1rem;
+              color: #555;
+              flex-grow: 1;
+            }
+
+            /* Read Moreボタン */
+            .research-card a {
+              margin-top: 1rem;
+              text-decoration: none;
+              color: #ffffff;
+              background-color: darkblue;
+              padding: 0.5rem 1rem;
+              border-radius: 6px;
+              text-align: center;
+              display: inline-block;
+              transition: background-color 0.3s ease;
+            }
+
+            /* Coming Soonボタン */
+            .research-card .coming-soon {
+              margin-top: 1rem;
+              padding: 0.5rem 1rem;
+              border-radius: 6px;
+              background-color: #888888;
+              color: #ffffff;
+              border: none;
+              cursor: not-allowed;
+              text-align: center;
+              display: inline-block;
+              font-family: 'Inter', sans-serif;
+            }
+
+            /* ホバー効果 */
+            .research-card:hover {
+              transform: translateY(-5px);
+              box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            }
+
+            .research-card a:hover {
+              background-color: #005fa3;
+            }
+
+        </style>
+    </head>
+    <body>
+      <div class="hero">
+        <div class="hero-overlay"></div>
+      
+        <div class="hero-content">
+          <div class="hero-top">
+            <h1>Haruhisa Oda</h1>
+            <p>
+              Graduate School of Medicine<br>
+              The University of Tokyo
+            </p>
+          </div>
+      
+          <div class="hero-bottom">
+            <h2>
+              Mathematics, AI & Biomedicine
+            </h2>
+          </div>
+        </div>
+      </div>
+        
+
+        <h2 style="font-family: sans-serif; color: darkblue;font-weight: bold;">Haruhisa Oda</h2>
+        <p>Department of Preventive Medicine, The University of Tokyo<br>
+        Melbourne School of Population and Global Health, The University of Melbourne </p>
+        <div class="info-grid">
+          <a class="info-btn" href="mailto:haruhisa-oda0722@g.ecc.u-tokyo.ac.jp" target="_blank">
+            Email
+          </a>
+        
+          <a class="info-btn" href="https://github.com/TopologicalBird" target="_blank">
+            GitHub
+          </a>
+
+          <a class="info-btn" href="publications.html" target="_blank">
+            Publications
+          </a>
+        </div>
+        <h2 style="font-family: sans-serif; color: darkblue;font-weight: bold;">News</h2>
+        <p>
+          2025/12/20: We will hold IMAB2026 (The Second International Workshop on Mathematics and AI for Biomedicine) on November 30th, 2026. Registration is open!<br>
+          https://topologicalbird.github.io/IMAB2026<br>
+          2025/12/4: Organized IMAB2025 (The First International Workshop on Mathematics and AI for Biomedicine)<br>
+          2025/12/3: Organized a symposium in MBSJ: "Future of mathematical data science driven biomedical research"
+        </p>
+        <h2 style="font-family: sans-serif; color: darkblue;font-weight: bold;">Mathematics, AI, and BioMedicine</h2>
+        <div class="info-grid2">
+          <div class="paragraph-card">
+            <h3>Motivation</h3>
+            <p>
+              BioMedicine is becoming increasingly data-driven, characterized by greater complexity and diversity than ever before. To fully harness the value of this data, it is crucial to develop innovative analysis methods based on advanced mathematical sciences.
+            </p>
+          </div>
+      
+          <div class="paragraph-card">
+            <h3>Challenges</h3>
+            <p>
+              A particularly significant challenge lies in how we recognize and interpret patterns, as biomedical data is abundant with various patterns, such as cell shapes and movements, branching morphologies in vessels and airways, and cell distribution patterns in histology and pathology. Recent advancements in data acquisition technologies, including 3D imaging, have also enabled us to access 3D and higher-dimensional data. 
+            </p>
+          </div>
+      
+          <div class="paragraph-card">
+            <h3>Approach</h3>
+            <p>
+              To analyze these patterns effectively, we can utilize concepts from topology, the study of shapes. We have been exploring the efficacy of topological information in the processing and understanding of biomedical data. We also combine these tools with machine learning method to build better performing frameworks.
+            </p>
+          </div>
+      
+          <div class="paragraph-card">
+            <h3>Vision</h3>
+            <p>
+              Through the development of innovative tools and the generation of new knowledge, we are dedicated to advancing all domains of biomedical science—encompassing basic, clinical, and social aspects—in order to foster a transformative understanding of the world.
+            </p>
+          </div>
+        </div>    
+        <h2 style="font-family: sans-serif; color: darkblue;font-weight: bold;">Recent Topics</h2>
+        <div class="info-grid2">
+          <!-- カード1: Read More -->
+          <div class="research-card">
+            <h3>Persistent homology based segmentation</h3>
+            <p>
+              Development of a 2D & 3D microscopic cell image segmentation method using persistent homology.
+            </p>
+            <a href="https://github.com/TopologicalBird/Persistent_Homological_Figure_Detection_Segmentation">Read More</a>
+          </div>
+          <!-- カード1: Read More -->
+          <div class="research-card">
+            <h3>Lung CT airway analysis</h3>
+            <p>
+              Quantification of 3D airway morphology based on persistent homology transform.
+            </p>
+            <a href="https://github.com/TopologicalBird/Airway_PHT">Read More</a>
+          </div>
+          <!-- カード3: Read More -->
+          <div class="research-card">
+            <h3>Branch structure analysis</h3>
+            <p>
+              Defining internal and external structure in ambiguous branch images.
+            </p>
+            <a href="https://github.com/TopologicalBird/Internal_External_Branch_Persistent_Homology">Read More</a>
+          </div>
+
+          <!-- カード4: Coming Soon -->
+          <div class="research-card">
+            <h3>Pathology patch analysis</h3>
+            <p>
+              Understanding pathology patch patterns by extracting topological information.
+            </p>
+            <button disabled class="coming-soon">Coming Soon</button>
+          </div>
+        </div>  
+          
+        
+        <h2 style="font-family: sans-serif; color: darkblue;font-weight: bold;">Activities and Awards</h2>
+        <h3>Scientific Visits
+        </h3>
+        <div class="info-grid2">
+          <div class="paragraph-card">
+            <h3>The University of Melbourne</h3>
+            <p>
+              May-June 2025
+            </p>
+          </div>
+      
+          <div class="paragraph-card">
+            <h3>Australian National University</h3>
+            <p>
+              June 2024 
+            </p>
+          </div>
+      
+          <div class="paragraph-card">
+            <h3>Institute for the Advanced Study of Human Biology (ASHBi, Kyoto University)</h3>
+            <p>
+              April-May 2024
+            </p>
+          </div>
+        </div>    
+        <h3>Awards, Grants, Scholarships
+        </h3>
+        <div class="info-grid2">
+          <div class="paragraph-card">
+            <h3>AIP Challenge</h3>
+            <p>
+              2025 (企画メンバーリーダー)
+            </p>
+          </div>
+      
+          <div class="paragraph-card">
+            <h3>WINGS-LST (UTokyo)</h3>
+            <p>
+              2025-
+            </p>
+          </div>
+      
+          <div class="paragraph-card">
+            <h3>BOOST NAIS (UTokyo)</h3>
+            <p>
+              2025-
+            </p>
+          </div>
+          <div class="paragraph-card">
+            <h3>SPRING-GX海外派遣支援</h3>
+            <p>
+              2025
+            </p>
+          </div>
+          <div class="paragraph-card">
+            <h3>Nakatani Foundation 大学院生奨学金8期生</h3>
+            <p>
+              2025-
+            </p>
+          </div>
+          <div class="paragraph-card">
+            <h3>令和6年度学部長賞</h3>
+            <p>
+              2024
+            </p>
+          </div>
+          <div class="paragraph-card">
+            <h3>東大リトリートポスター発表特別賞</h3>
+            <p>
+              2024
+            </p>
+          </div>
+          <div class="paragraph-card">
+            <h3>令和5年度有馬聡記念フェローシップ</h3>
+            <p>
+              2023
+            </p>
+          </div>
+        </div>  
+        <h3>Reviewing activity
+        </h3>
+        <div class="info-grid2">
+          <div class="paragraph-card">
+            <h3>PLOS Computational Biology</h3>
+            <p>
+              1
+            </p>
+          </div>
+      
+          <div class="paragraph-card">
+            <h3>Nature Methods</h3>
+            <p>
+              1
+            </p>
+          </div>
+      
+          <div class="paragraph-card">
+            <h3>ICIAM 2023 Tokyo</h3>
+            <p>
+              2
+            </p>
+          </div>
+        </div>     
+        <h3>Academic Society
+        </h3>
+        <div class="info-grid2">
+          <div class="paragraph-card">
+            <h3>Japan Society of Industrial and Applied Mathematics</h3>
+            <p>
+              日本応用数理学会
+            </p>
+          </div>
+      
+          <div class="paragraph-card">
+            <h3>The Molecular Biology Society of Japan</h3>
+            <p>
+              日本分子生物学会
+            </p>
+          </div>
+      
+          <div class="paragraph-card">
+            <h3>The Japanese Vascular Biology and Medicine Organization</h3>
+            <p>
+              日本血管生物医学会
+            </p>
+          </div>
+          <div class="paragraph-card">
+            <h3>The Japanese Cancer Association</h3>
+            <p>
+              日本癌学会
+            </p>
+          </div>
+        </div> 
+    </body>
+</html> 
