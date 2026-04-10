@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Haruhisa Oda Homepage</title>
+        <style>
+            body {
+              margin: 0;
+              font-family:Arial, Helvetica, sans-serif;
+              padding-left: 6vw;      /* 左余白 */
+              padding-right: 6vw;     /* 右余白 */
+            }
+          
+            .hero {
+              position: relative;
+              height: 100vh;
+
+              /* 背景画像 */
+              background-image: url("./img/bg.png"); /* ← 実際の画像パス */
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+
+              /* body padding 打ち消し（必要なら） */
+              margin-left: -6vw;
+              margin-right: -6vw;
+              width: calc(100% + 12vw);
+              overflow: hidden;
+            }
+
+            /* 暗くするオーバーレイ */
+            .hero-overlay {
+              position: absolute;
+              inset: 0;
+              background: rgba(0, 0, 0, 0.1);
+              z-index: 0;
+            }
+            /* 文字の「枠」＝画像と同じ大きさ */
+            .hero-content {
+              position: relative;
+              z-index: 1;
+
+              height: 100%;                  /* ← hero と完全一致 */
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+
+              padding: 15vh 6vw;
+              color: white;
+              text-align: center;
+              box-sizing: border-box;
+            }
+            
+
+            /* 文字 */
+            .hero-text {
+              position: relative;
+              z-index: 1;
+
+              height: 100%;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+
+              padding: 5vh 6vw;
+
+              color: white;
+              text-align: center;
+            }
+
+            .hero h1,
+            .hero h2 {
+              font-family: sans-serif;
+            }
+          
+            .hero-text p {
+              margin-top: 1rem;
+              font-size: clamp(1rem, 3vw, 1.5rem);
+            }
+            .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 90vw;
+            margin: 0 auto;
+            }
+            .info-grid2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 90vw;
+            margin: 0 auto;
+            }
+
+            .info-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, #00bfff, #7b00ff);
+            border-radius: 10px;
+
+            font-family: sans-serif;
+            font-size: clamp(0.85rem, 3.5vw, 1.1rem);
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+            }
+            .research-background {
+              background: #f9fafc;
+              border-radius: 12px;
+              padding: 2rem;
+              margin: 2rem auto;
+              max-width: 1100px;
+              font-family: sans-serif;
+            }
+            .research-background h2 {
+              font-size: 1.8rem;
+              margin-bottom: 1.5rem;
+              text-align: center;
+              color: darkblue;
+            }
+            .background-content {
+              display: grid;
+              gap: 1.2rem;
+              grid-template-columns: 1fr;
+            }
+            .paragraph-card {
+              background: #ffffff;
+              border-left: 4px solid darkblue; /* ✅ 左にハイライトライン */
+              border-radius: 10px;
+              box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+              padding: 1.2rem 1.5rem;
+              transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .paragraph-card:hover {
+              transform: translateY(-3px);
+              box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            }
+
+            .paragraph-card h3 {
+              font-size: 1.3rem;
+              color: darkblue;
+              margin-top: 0;
+              margin-bottom: 0.5rem;
+            }
+
+            .paragraph-card p {
+              font-size: 1rem;
+              line-height: 1.7;
+              color: #333;
+              margin: 0;
+            }
+            /* カードの基本スタイル */
+            .research-card {
+              background: #ffffff;
+              border-radius: 12px;
+              box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+              padding: 1.5rem;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            /* タイトル */
+            .research-card h3 {
+              font-size: 1.3rem;
+              margin-bottom: 1rem;
+              color: darkblue;
+            }
+
+            /* 内容 */
+            .research-card p {
+              font-size: 1rem;
+              color: #555;
+              flex-grow: 1;
+            }
+
+            /* Read Moreボタン */
+            .research-card a {
+              margin-top: 1rem;
+              text-decoration: none;
+              color: #ffffff;
+              background-color: darkblue;
+              padding: 0.5rem 1rem;
+              border-radius: 6px;
+              text-align: center;
+              display: inline-block;
+              transition: background-color 0.3s ease;
+            }
+
+            /* Coming Soonボタン */
+            .research-card .coming-soon {
+              margin-top: 1rem;
+              padding: 0.5rem 1rem;
+              border-radius: 6px;
+              background-color: #888888;
+              color: #ffffff;
+              border: none;
+              cursor: not-allowed;
+              text-align: center;
+              display: inline-block;
+              font-family: 'Inter', sans-serif;
+            }
+
+            /* ホバー効果 */
+            .research-card:hover {
+              transform: translateY(-5px);
+              box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            }
+
+            .research-card a:hover {
+              background-color: #005fa3;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="info-grid">
+            <a class="info-btn" href="index.html" target="_blank">
+              Back to Home
+            </a>
+        </div>
+        <h2 style="font-family: sans-serif; color: darkblue;font-weight: bold;">Persistent homology based segmentation</h2>
+        <h3 style="font-family: sans-serif; color: darkblue;font-weight: bold;">Related papers</h3>
+        <ul>
+            <li>Haruhisa Oda. Topology enhances classical figure detection. 2025 5th International Conference on Electrical, Computer and Energy Technologies (ICECET), Paris, France, 2025. doi: 10.1109/ICECET63943.2025.11472121.</li>
+            <li>Haruhisa Oda, Yusuke Imoto. Persistent homology-based segmentation tool for membrane images. Cell Reports Methods (2026) doi:10.1016/j.crmeth.2026.101366</li>
+            <li>Haruhisa Oda. Persistent homological 3D cell detection. JSIAM Letters 16 (2024) 25-28. https://doi.org/10.14495/jsiaml.16.25 </li>
+            <li>Haruhisa Oda,  Kazuo Tonami, Yoichi Nakata, Naoko Takubo, and Hiroki Kurihara. Persistent homological cell tracking technology. Scientific Reports 13 (2023) 10882. https://doi.org/10.1038/s41598-023-37760-3  (Direct link to text: https://rdcu.be/df6rI)</li>
+            <li>Haruhisa Oda. Counting and detecting figures using persistent homology. JSIAM Letters 15 (2023) 33-36. https://doi.org/10.14495/jsiaml.15.33</li>
+        </ul>
+        <h3 style="font-family: sans-serif; color: darkblue;font-weight: bold;">Related codes</h3>
+        <ul>
+            <li><a href="https://github.com/TopologicalBird/Persistent_Homological_Figure_Detection_Segmentation">2D nuclei segmentation</a></li>
+            <li><a href="https://github.com/TopologicalBird/PersistentHomologicalCellTrackingTechnology">2D cell segmentation and tracking</a></li>
+            <li><a href="https://github.com/TopologicalBird/PersistentHomological3DCellDetection">3D nuclei segmentation</a></li>
+            <li><a href="https://github.com/TopologicalBird/PomSeg">3D membrane segmentation</a></li>
+        </ul>
+
+        
+
+
+
+    </body>
+</html> 
